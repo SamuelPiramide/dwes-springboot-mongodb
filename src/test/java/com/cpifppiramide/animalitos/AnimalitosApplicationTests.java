@@ -25,7 +25,7 @@ class AnimalitosApplicationTests {
 
 	@BeforeAll()
 	public static void clean(){
-		//MongoDBConnection.getDatabase().getCollection("animalitos").drop();
+		MongoDBConnection.getDatabase().getCollection("animalitos").drop();
 	}
 
 	@Test
@@ -37,6 +37,8 @@ class AnimalitosApplicationTests {
 
 	@Test
 	public void list(){
+		MongoDBConnection.getDatabase().getCollection("animalitos").drop();
+		animalitosUseCases.save(new Animalito("paco"));
 		List<Animalito> animalitos = animalitosUseCases.getAll();
 		assertEquals(1, animalitos.size());
 	}

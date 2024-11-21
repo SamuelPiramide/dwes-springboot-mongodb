@@ -14,8 +14,10 @@ public class AnimalitosUseCases {
     }
 
     public Animalito save(Animalito animalito){
-        return this.animalitosRepository.save(animalito);
+        String id = this.animalitosRepository.save(animalito);
+        return this.animalitosRepository.findById(id);
     }
+
     public List<Animalito> getAll(){
         return this.animalitosRepository.getAll();
     }
