@@ -1,4 +1,4 @@
-package com.cpifppiramide.animalitos.animalito.infrastructure;
+/*package com.cpifppiramide.animalitos.animalito.infrastructure;
 
 import com.cpifppiramide.animalitos.animalito.domain.Animalito;
 import com.cpifppiramide.animalitos.animalito.domain.AnimalitosRepository;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
-    @Override
+
     public String save(Animalito animalito) {
         Document document = new Document();
         document.append("nombre", animalito.getNombre());
@@ -24,7 +24,7 @@ public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
         return id.toHexString();
     }
 
-    @Override
+
     public List<Animalito> getAll() {
         MongoCollection<Document> collection = MongoDBConnection.getDatabase().getCollection("animalitos");
         List<Animalito> animalitos = new ArrayList<>();
@@ -36,7 +36,7 @@ public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
         return animalitos;
     }
 
-    @Override
+
     public Animalito findById(String id) {
         MongoCollection<Document> collection = MongoDBConnection.getDatabase().getCollection("animalitos");
         ObjectId idAnimalito = new ObjectId(id);
@@ -49,4 +49,4 @@ public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
             return null;
         }
     }
-}
+}*/
