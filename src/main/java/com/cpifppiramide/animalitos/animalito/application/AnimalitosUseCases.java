@@ -5,7 +5,8 @@ import com.cpifppiramide.animalitos.animalito.domain.AnimalitoRepository;
 
 import java.util.List;
 
-public class AnimalitosUseCases {
+public class
+AnimalitosUseCases {
 
     private AnimalitoRepository animalitosRepository;
 

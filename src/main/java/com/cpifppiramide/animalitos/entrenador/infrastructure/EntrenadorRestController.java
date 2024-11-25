@@ -8,6 +8,8 @@ import com.cpifppiramide.animalitos.entrenador.application.EntrenadorUseCases;
 import com.cpifppiramide.animalitos.entrenador.domain.Entrenador;
 import com.cpifppiramide.animalitos.entrenador.domain.EntrenadorRepository;
 import org.bson.json.JsonObject;
+import org.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,14 +30,15 @@ public class EntrenadorRestController {
 
     @PostMapping("/api/entrenador")
     public Entrenador save(@RequestBody Entrenador entrenador){
-        System.out.println(entrenador.getNombre());
         return this.entrenadorUseCases.save(entrenador);
     }
 
-    @PutMapping("/api/entrenador/{id}")
-    public Entrenador captura(@PathVariable String id, @RequestBody AnimalitoDTO animalitoDTO){
+    @PutMapping(value = "/api/entrenador/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Entrenador captura(@PathVariable String id, @RequestBody String json){
 
-        Animalito animalito = new Animalito(animalitoDTO.getId(), animalitoDTO.getNivel());
+        //SE NECESITA IMPORTAR EN EL POM LA DEPENDENCIA DE JSON PARA USARLO
+        JSONObject jsonAnimalito = new JSONObject(json);
+        Animalito animalito = new Animalito(jsonAnimalito.getInt("id"), jsonAnimalito.getInt("nivel"));
         return this.entrenadorUseCases.captura(id, animalito);
     }
 }
