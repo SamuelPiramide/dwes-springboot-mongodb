@@ -5,8 +5,7 @@ import com.cpifppiramide.animalitos.animalito.domain.AnimalitoRepository;
 
 import java.util.List;
 
-public class
-AnimalitosUseCases {
+public class AnimalitosUseCases {
 
     private AnimalitoRepository animalitosRepository;
 
@@ -17,5 +16,14 @@ AnimalitosUseCases {
     public List<Animalito> getAll(){
         return this.animalitosRepository.getAll();
     }
+
+    public Animalito findById(Integer id){
+        return animalitosRepository.findById(id);
+    }
+
+    public List<Animalito> getAnimalitosPorTipo(String tipo){
+        return animalitosRepository.getAnimalitosPorTipo(tipo);
+    }
+
 
 }

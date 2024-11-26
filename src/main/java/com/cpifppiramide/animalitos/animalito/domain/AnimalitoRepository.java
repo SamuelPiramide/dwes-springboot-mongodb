@@ -6,5 +6,6 @@ public interface AnimalitoRepository {
 
      List<Animalito> getAll();
      Animalito findById(Integer id);
+     List<Animalito> getAnimalitosPorTipo(String tipo);
 
 }
