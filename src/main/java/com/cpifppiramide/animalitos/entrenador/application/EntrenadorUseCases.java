@@ -24,6 +24,11 @@ public class EntrenadorUseCases {
         return entrenadorRepository.get(id);
     }
 
+    public Entrenador saveCompleto(Entrenador entrenador){
+        String id = entrenadorRepository.saveCompleto(entrenador);
+        return entrenadorRepository.get(id);
+    }
+
 
     public Entrenador getEntrenador(String id){
         Entrenador entrenador = entrenadorRepository.get(id);

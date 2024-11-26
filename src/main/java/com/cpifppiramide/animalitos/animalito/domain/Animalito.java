@@ -11,6 +11,9 @@ public class Animalito {
     private String tipo;
     private Integer nivel;
 
+
+    public Animalito(){}
+
     public Animalito(Integer id, Integer nivel) {
         this.id = id;
         this.nivel = nivel;

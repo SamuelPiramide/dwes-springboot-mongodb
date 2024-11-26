@@ -13,6 +13,7 @@ import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -28,6 +29,25 @@ public class EntrenadorRepositoryMongoDB implements EntrenadorRepository {
         ObjectId objectId = insertOneResult.getInsertedId().asObjectId().getValue();
 
         return objectId.toHexString();
+    }
+
+    @Override
+    public String saveCompleto(Entrenador entrenador) {
+
+        List<Document> animalitosDocs = entrenador.getCapturados().stream()
+                .map(animalito -> new Document("id", animalito.getId())
+                        .append("nivel", animalito.getNivel()))
+                .collect(Collectors.toList());
+
+        Document entrenadorDoc = new Document("id", entrenador.getId())
+                .append("nombre", entrenador.getNombre())
+                .append("capturados", animalitosDocs);
+
+        MongoCollection<Document> coleccion = MongoDBConnection.getDatabase().getCollection("entrenadores");
+        InsertOneResult insertOneResult = coleccion.insertOne(entrenadorDoc);
+
+
+        return insertOneResult.getInsertedId().asObjectId().getValue().toHexString();
     }
 
     @Override
